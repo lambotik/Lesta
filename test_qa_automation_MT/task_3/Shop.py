@@ -1,4 +1,4 @@
-from logger import fin_logger
+# from logger import fin_logger
 
 
 class DB:
