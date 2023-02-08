@@ -29,7 +29,7 @@ class BotController:
 
     def run(self):
         for task in self.tasks:
-            print('RUN TASK #' + str(task.uid))
+            print 'RUN TASK #' + str(task.uid)
             task.__process__()
         log_info('Bot Controller', 'All tasks finished...')
 
