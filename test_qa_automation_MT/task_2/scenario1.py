@@ -101,12 +101,12 @@ last_target = ShootTask(bot=bot, uid=controller.get_task_uid(),
                         reload_time=get_data()['Reload Time'],
                         shots_to_kill=get_data()['Puts Shoot']['IS2'][1])
 
-SCENARIO = (
+scenario = (
     first_mission_point, firs_target,
     second_mission_point, second_target,
     last_mission_point, last_target)
 
-for tank in SCENARIO:
+for tank in scenario:
     controller.add_task(tank)
 controller.print_execution_stack()
 controller.run()
