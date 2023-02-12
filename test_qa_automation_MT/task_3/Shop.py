@@ -1,3 +1,5 @@
+import random
+
 from logger import fin_logger
 
 
@@ -31,14 +33,14 @@ class Shop:
             player.resources.gold -= self.db.turrets[tankID][turretID]['gold']
             player.resources.credits -= self.db.turrets[tankID][turretID]['credits']
             player.saveResources()
-
         self.fin_logger.log_state(player)
 
     def __buyTank(self, player, tankID):
         if tankID in self.db.tanks:
             player.inventoryPlanes.append(tankID)
 
-            if self.db.tanks[tankID]['credits'] >= player.resources.credits and \
+            if self.db.tanks[tankID]['credits'] \
+                    >= player.resources.credits and \
                     self.db.tanks[tankID]['gold'] >= player.resources.gold:
                 player.resources.credits -= self.db.tanks[tankID]['credits']
                 player.resources.gold -= self.db.tanks[tankID]['gold']
@@ -46,29 +48,18 @@ class Shop:
             self.fin_logger.log_state(player)
 
 
-class MyShop(Shop):
-    print
+class Player:
+    def __init__(self):
+        self.inventoryGuns = {}
+        self.inventoryPlanes = []
+        self.resources = Resources
+
+    def saveResources(self):
+        pass
 
 
+class Resources(Player):
+    credits = 6000
+    gold = 300
 
-id = Shop()
-player = id.db.tanks.keys()
-tank_201, credits_201, gold_201 = id.db.tanks.keys()[0], id.db.tanks.values()[0].values()[0], \
-id.db.tanks.values()[0].values()[1]
-tank_101, credits_101, gold_101 = id.db.tanks.keys()[1], id.db.tanks.values()[1].values()[0], \
-id.db.tanks.values()[1].values()[1]
-tank_301, credits_301, gold_301 = id.db.tanks.keys()[2], id.db.tanks.values()[2].values()[0], \
-id.db.tanks.values()[2].values()[1]
-tankID = id.db.tanks
-print tankID.keys()
-print tankID.keys()
-# buy_tank = shop._Shop__buyTank(player,tankID)
-# print buy_tank
-print tank_201, credits_201, gold_201
-print tank_101, credits_101, gold_101
-print tank_301, credits_301, gold_301
-sort_dict = sorted(id.db.tanks)
-print sort_dict
-print sort_dict[0]
-igor = Shop()
-print igor._Shop__buyTank(player, sort_dict[0])
+
