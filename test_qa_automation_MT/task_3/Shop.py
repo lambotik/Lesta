@@ -1,5 +1,3 @@
-import random
-
 from logger import fin_logger
 
 
@@ -39,27 +37,9 @@ class Shop:
         if tankID in self.db.tanks:
             player.inventoryPlanes.append(tankID)
 
-            if self.db.tanks[tankID]['credits'] \
-                    >= player.resources.credits and \
+            if self.db.tanks[tankID]['credits'] >= player.resources.credits and \
                     self.db.tanks[tankID]['gold'] >= player.resources.gold:
                 player.resources.credits -= self.db.tanks[tankID]['credits']
                 player.resources.gold -= self.db.tanks[tankID]['gold']
             player.saveResources()
             self.fin_logger.log_state(player)
-
-
-class Player:
-    def __init__(self):
-        self.inventoryGuns = {}
-        self.inventoryPlanes = []
-        self.resources = Resources
-
-    def saveResources(self):
-        pass
-
-
-class Resources(Player):
-    credits = 6000
-    gold = 300
-
-

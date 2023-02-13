@@ -1,3 +1,5 @@
 class fin_logger():
     def log_state(self, player):
-        return 'Tank will buying'
+
+        return 'The tank was bought'
+

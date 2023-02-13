@@ -1,4 +1,3 @@
-import random
 import time as t
 
 from pymodule1 import *
