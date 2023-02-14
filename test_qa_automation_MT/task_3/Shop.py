@@ -14,9 +14,6 @@ class DB:
                         301: {395: {'credits': 2200, 'gold': 0},
                               257: {'credits': 1510, 'gold': 0}}}
 
-    def tank(self):
-        self.tanks = 'gold'
-
 
 class Shop:
     def __init__(self):
@@ -31,6 +28,7 @@ class Shop:
             player.resources.gold -= self.db.turrets[tankID][turretID]['gold']
             player.resources.credits -= self.db.turrets[tankID][turretID]['credits']
             player.saveResources()
+
         self.fin_logger.log_state(player)
 
     def __buyTank(self, player, tankID):
@@ -38,7 +36,7 @@ class Shop:
             player.inventoryPlanes.append(tankID)
 
             if self.db.tanks[tankID]['credits'] >= player.resources.credits and \
-                    self.db.tanks[tankID]['gold'] >= player.resources.gold:
+                            self.db.tanks[tankID]['gold'] >= player.resources.gold:
                 player.resources.credits -= self.db.tanks[tankID]['credits']
                 player.resources.gold -= self.db.tanks[tankID]['gold']
             player.saveResources()
