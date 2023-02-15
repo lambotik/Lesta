@@ -42,9 +42,7 @@ class Player(object):
         if ((player_credits < tank_cost_credits) or (player_gold < tank_cost_gold)) and \
                 (tankID in Resources.tanks) == True:
             bool = False
-            print 'False', bool
             return bool
-        print 'True', bool
         return bool
 
     def check_user_can_buy_random_tank(self):
