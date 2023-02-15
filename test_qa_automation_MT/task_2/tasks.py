@@ -1,6 +1,6 @@
 import time
 
-from pymodule1 import log_debug, log_info
+from log import log_debug, log_info
 
 
 class MovementTask:

@@ -2,7 +2,7 @@ import pprint
 import unittest
 
 from Shop import Shop
-from player import Player
+from Player import Player
 
 shop = Shop()
 

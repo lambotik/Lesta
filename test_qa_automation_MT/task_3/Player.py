@@ -1,6 +1,6 @@
 import random
 
-from test_qa_automation_MT.task_3.Shop import Shop
+from task_3.Shop import Shop
 
 shop = Shop()
 
@@ -16,7 +16,8 @@ class Player(object):
         credits_after, gold_after = Player().resources.credits, Player().resources.gold
         tankID = player.inventoryPlanes[0]
         player.inventoryGuns.append(tankID)
-        turret_tank = Player().inventoryTurret
+        turretID = UserInitialization.turretID
+        turret_tank = player.inventoryTurret
         print 'Resource value has been saved!'
         return credits_after, gold_after, tankID, turret_tank
 
@@ -35,16 +36,14 @@ class Player(object):
         tank_cost_credits = shop.db.tanks[tankID]['credits']
         tank_cost_gold = shop.db.tanks[tankID]['gold']
         shop._Shop__buyTank(player, tankID)
-        print 'Player buy tank for the: credits', shop.db.tanks[tankID]['credits'], \
+        print 'Player buy tank', tankID, 'for the: credits', shop.db.tanks[tankID]['credits'], \
             'gold', shop.db.tanks[tankID]['gold']
         bool = tankID in Resources.tanks
         print "bool", bool
         if ((player_credits < tank_cost_credits) or (player_gold < tank_cost_gold)) and \
                 (tankID in Resources.tanks) == True:
             bool = False
-            print 'False', bool
             return bool
-        print 'True', bool
         return bool
 
     def check_user_can_buy_random_tank(self):
@@ -53,23 +52,16 @@ class Player(object):
         credits_before_buy = player.user_inventory()[0]
         gold_before_buy = player.user_inventory()[1]
         tank_before_buy = player.user_inventory()[2]
-        print 'credits_before_buy', credits_before_buy
-        print 'gold_before_buy', gold_before_buy
-        print 'tank_before_buy', tank_before_buy
         tankID = UserInitialization.tankID
         price_credits_per_tank = shop.db.tanks[tankID]['credits']
         price_gold_per_tank = shop.db.tanks[tankID]['gold']
-        print 'Player buy tank for the: credits', shop.db.tanks[tankID]['credits'], \
-            'gold', shop.db.tanks[tankID]['gold']
+        print 'Player buy tank', tankID, 'for the: credits', shop.db.tanks[tankID]['credits'], \
+            'credits', shop.db.tanks[tankID]['gold'], 'gold'
         shop._Shop__buyTank(player, tankID)
         tank_in_hangar = player.resources.tanks
-        print 'Tank in hangar:', tank_in_hangar[0]
         credits_after_buy = player.user_inventory()[0]
         gold_after_buy = player.user_inventory()[1]
         tank_after_buy = player.user_inventory()[2]
-        print 'Credits after_buy', credits_after_buy
-        print 'Gold after buy', gold_after_buy
-        print 'Tank after buy', tank_after_buy[0]
         return credits_before_buy, gold_before_buy, tank_before_buy, credits_after_buy, \
             gold_after_buy, tank_after_buy, price_credits_per_tank, price_gold_per_tank, tankID, tank_in_hangar[0]
 
@@ -78,31 +70,23 @@ class Player(object):
         buy_tank = player.check_user_can_buy_random_tank()
         tankID = buy_tank[8]
         turretID = player.inventoryGuns[0]
+        list_turret = shop.db.turrets[tankID].keys()[random.randint(0, 1)]
+        print 'The player buys a turret by:', shop.db.turrets[tankID][list_turret]['credits'], \
+            'credits', shop.db.turrets[tankID][list_turret]['gold'], 'gold'
+        player.inventoryTurret.append(list_turret)
         shop._Shop__buyTurrets(player, tankID, turretID)
         credits_after_buy_tank = player.user_inventory()[0]
         gold_after_buy_tank = player.user_inventory()[1]
         tank_after_buy_tank = player.user_inventory()[2]
         turret_after_buy_tank = player.user_inventory()[3]
-        list_turret = shop.db.turrets[tankID].keys()[random.randint(0, 1)]
-        print 'The player buys a turret by: credits', shop.db.turrets[tankID][list_turret]['credits'], \
-            'gold', shop.db.turrets[tankID][list_turret]['gold']
-        player.inventoryTurret.append(list_turret)
-        print 'Player turret', player.inventoryTurret
-        print list_turret
         credits_after_buy_turret = player.user_inventory()[0]
         gold_after_buy_turret = player.user_inventory()[1]
-        tank_after_buy_turret = player.user_inventory()[2]
+        # tank_after_buy_turret = player.user_inventory()[2]
         turret_after_buy_turret = player.user_inventory()[3]
         price_credits_per_turret = shop.db.turrets[tankID][list_turret]['credits']
         price_gold_per_turret = shop.db.turrets[tankID][list_turret]['gold']
-        print 'Player buy turret for the: credits', shop.db.turrets[tankID][list_turret]['credits'], \
-            'gold', shop.db.turrets[tankID][list_turret]['gold']
-        print 'Credits after_buy turret', credits_after_buy_turret
-        print 'Gold after buy turret', gold_after_buy_turret
-        print 'Tank after buy turret', tank_after_buy_turret[0]
-        print 'Turret after buy turret', turret_after_buy_turret[0]
         return credits_after_buy_tank, gold_after_buy_tank, tank_after_buy_tank, \
-            turret_after_buy_tank, credits_after_buy_turret, credits_after_buy_turret,\
+            turret_after_buy_tank, credits_after_buy_turret, gold_after_buy_turret, \
             price_credits_per_turret, price_gold_per_turret, list_turret, \
             turret_after_buy_turret[0]
 
