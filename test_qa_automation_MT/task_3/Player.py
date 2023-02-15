@@ -1,6 +1,6 @@
 import random
 
-from task_3.Shop import Shop
+from test_qa_automation_MT.task_3.Shop import Shop
 
 shop = Shop()
 
@@ -36,7 +36,7 @@ class Player(object):
         tank_cost_credits = shop.db.tanks[tankID]['credits']
         tank_cost_gold = shop.db.tanks[tankID]['gold']
         shop._Shop__buyTank(player, tankID)
-        print 'Player buy tank', tankID, 'for the: credits', shop.db.tanks[tankID]['credits'], \
+        print 'Player buy tank', tankID, 'by the: credits', shop.db.tanks[tankID]['credits'], \
             'gold', shop.db.tanks[tankID]['gold']
         bool = tankID in Resources.tanks
         print "bool", bool
@@ -55,7 +55,7 @@ class Player(object):
         tankID = UserInitialization.tankID
         price_credits_per_tank = shop.db.tanks[tankID]['credits']
         price_gold_per_tank = shop.db.tanks[tankID]['gold']
-        print 'Player buy tank', tankID, 'for the: credits', shop.db.tanks[tankID]['credits'], \
+        print 'Player buy tank', tankID, 'by the: credits', shop.db.tanks[tankID]['credits'], \
             'credits', shop.db.tanks[tankID]['gold'], 'gold'
         shop._Shop__buyTank(player, tankID)
         tank_in_hangar = player.resources.tanks
@@ -71,7 +71,7 @@ class Player(object):
         tankID = buy_tank[8]
         turretID = player.inventoryGuns[0]
         list_turret = shop.db.turrets[tankID].keys()[random.randint(0, 1)]
-        print 'The player buys a turret by:', shop.db.turrets[tankID][list_turret]['credits'], \
+        print 'The player buys a turret by the:', shop.db.turrets[tankID][list_turret]['credits'], \
             'credits', shop.db.turrets[tankID][list_turret]['gold'], 'gold'
         player.inventoryTurret.append(list_turret)
         shop._Shop__buyTurrets(player, tankID, turretID)
