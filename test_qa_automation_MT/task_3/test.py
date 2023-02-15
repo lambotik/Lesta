@@ -1,8 +1,8 @@
 import pprint
 import unittest
 
-from Shop import Shop
-from Player import Player
+from test_qa_automation_MT.task_3.Shop import Shop
+from test_qa_automation_MT.task_3.Player import Player
 
 shop = Shop()
 
