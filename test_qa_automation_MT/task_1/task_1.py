@@ -21,7 +21,6 @@ class Tank(Vehicle):
 
 
 class Tankman(Vehicle):
-    uid = Vehicle.id
 
     def __new__(cls):
         cls.id = get_id()

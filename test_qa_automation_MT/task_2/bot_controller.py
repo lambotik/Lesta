@@ -1,15 +1,14 @@
-import time as t
+import time as time
 
-from pymodule1 import *
+from log import *
 
-global uid
 uid = 0  # complex hash function
 
 
 class BotController:
     tasks = []
     working_time = 0
-    start_time = int(t.time())
+    start_time = int(time.time())
 
     def add_task(self, task):
         self.tasks.append(task)

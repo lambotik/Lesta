@@ -1,8 +1,8 @@
 from time import sleep
 
 import bot_controller
-import pymodule1 as log
-from tasks import *
+import log
+from tasks import MovementTask, ShootTask
 
 
 def get_data():
